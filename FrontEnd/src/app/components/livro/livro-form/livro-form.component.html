@@ -1,0 +1,54 @@
+<div class="card">
+  <div class="card-header">
+    <h4>{{ livro.id ? 'Editar' : 'Novo' }} Livro</h4>
+  </div>
+  <div class="card-body">
+    <form (ngSubmit)="salvar()">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label>Título *</label>
+          <input class="form-control" [(ngModel)]="livro.titulo" name="titulo" required>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label>Editora *</label>
+          <input class="form-control" [(ngModel)]="livro.editora" name="editora" required>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <label>Edição *</label>
+          <input type="number" class="form-control" [(ngModel)]="livro.edicao" name="edicao" required>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label>Ano Publicação *</label>
+          <input class="form-control" [(ngModel)]="livro.anoPublicacao" name="anoPublicacao" required>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label>Valor *</label>
+          <input type="number" step="0.01" class="form-control" [(ngModel)]="livro.valor" name="valor" required>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label>Autores *</label>
+        <select multiple class="form-control" [(ngModel)]="livro.autores" name="autores" size="5" required>
+          <option *ngFor="let a of autores" [ngValue]="a">{{ a.nome }}</option>
+        </select>
+        <small class="text-muted">Segure Ctrl (ou Cmd) para selecionar mais de um</small>
+      </div>
+
+      <div class="mb-3">
+        <label>Assuntos *</label>
+        <select multiple class="form-control" [(ngModel)]="livro.assuntos" name="assuntos" size="5" required>
+          <option *ngFor="let a of assuntos" [ngValue]="a">{{ a.descricao }}</option>
+        </select>
+      </div>
+
+      <div class="mt-4">
+        <button type="submit" class="btn btn-success me-2">Salvar</button>
+        <a routerLink="/livros" class="btn btn-secondary">Cancelar</a>
+      </div>
+    </form>
+  </div>
+</div>

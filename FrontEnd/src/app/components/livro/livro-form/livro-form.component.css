@@ -1,0 +1,131 @@
+/* src/app/components/livro/livro-form/livro-form.component.css */
+
+.card {
+  max-width: 900px;
+  margin: 2rem auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.card-header {
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: white;
+  padding: 1.5rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.card-body {
+  padding: 2rem;
+  background-color: #f8f9fa;
+}
+
+.form-control,
+select.form-control {
+  height: 48px;
+  border-radius: 8px;
+  border: 1px solid #ced4da;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  transition: all 0.3s;
+}
+
+.form-control:focus,
+select.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  outline: none;
+}
+
+select[multiple] {
+  height: 180px !important;
+  padding: 0.5rem;
+  background-color: white;
+}
+
+option {
+  padding: 0.5rem;
+  font-size: 0.95rem;
+}
+
+label {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+small.text-muted {
+  font-size: 0.85rem;
+  color: #6c757d;
+  margin-top: 0.5rem;
+  display: block;
+}
+
+.btn-success {
+  background: #28a745;
+  border: none;
+  padding: 0.75rem 2rem;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.btn-success:hover {
+  background: #218838;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(40, 167, 69, 0.4);
+}
+
+.btn-secondary {
+  background: #6c757d;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.btn-secondary:hover {
+  background: #5a6268;
+  transform: translateY(-2px);
+}
+
+.mt-4 {
+  margin-top: 2rem !important;
+  text-align: right;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .card {
+    margin: 1rem;
+    border-radius: 8px;
+  }
+  
+  .card-header {
+    font-size: 1.3rem;
+    padding: 1rem;
+  }
+  
+  .card-body {
+    padding: 1.5rem;
+  }
+  
+  .row > div {
+    margin-bottom: 1rem;
+  }
+  
+  .mt-4 {
+    text-align: center;
+  }
+  
+  .btn-success,
+  .btn-secondary {
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+}

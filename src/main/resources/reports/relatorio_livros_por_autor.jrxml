@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="relatorio_livros_por_autor"
+              pageWidth="595"
+              pageHeight="842"
+              columnWidth="555"
+              leftMargin="20"
+              rightMargin="20"
+              topMargin="20"
+              bottomMargin="20">
+
+    <queryString><![CDATA[
+        SELECT a.nome AS autor_nome,
+               l.titulo AS livro_titulo,
+               l.editora,
+               l.edicao,
+               l.ano_publicacao AS ano_publicacao,
+               l.valor
+        FROM autor a
+        JOIN livro_autor la ON a.id = la.autor_id
+        JOIN livro l ON la.livro_id = l.id
+        ORDER BY a.nome, l.titulo
+    ]]></queryString>
+
+    <field name="autor_nome" class="java.lang.String"/>
+    <field name="livro_titulo" class="java.lang.String"/>
+    <field name="editora" class="java.lang.String"/>
+    <field name="edicao" class="java.lang.Integer"/>
+    <field name="ano_publicacao" class="java.lang.String"/>
+    <field name="valor" class="java.math.BigDecimal"/>
+
+    <group name="grupoAutor">
+        <groupExpression><![CDATA[$F{autor_nome}]]></groupExpression>
+        <groupHeader>
+            <band height="30">
+                <textField>
+                    <reportElement x="0" y="5" width="555" height="25"/>
+                    <textElement textAlignment="Center">
+                        <font size="14" isBold="true"/>
+                    </textElement>
+                    <textFieldExpression><![CDATA["Autor: " + $F{autor_nome}]]></textFieldExpression>
+                </textField>
+                <line>
+                    <reportElement x="0" y="29" width="555" height="1"/>
+                    <graphicElement/>
+                </line>
+            </band>
+        </groupHeader>
+    </group>
+
+    <title>
+        <band height="70">
+            <staticText>
+                <reportElement x="0" y="10" width="555" height="50"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="20" isBold="true"/>
+                </textElement>
+                <text><![CDATA[RELATÓRIO DE LIVROS POR AUTOR]]></text>
+            </staticText>
+        </band>
+    </title>
+
+    <columnHeader>
+        <band height="25">
+            <staticText>
+                <reportElement x="0" y="0" width="200" height="25" backcolor="#D0D0D0"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Título]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="200" y="0" width="120" height="25" backcolor="#D0D0D0"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Editora]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="320" y="0" width="70" height="25" backcolor="#D0D0D0"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Edição]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="390" y="0" width="80" height="25" backcolor="#D0D0D0"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Ano]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="470" y="0" width="85" height="25" backcolor="#D0D0D0"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Valor]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+
+    <detail>
+        <band height="20">
+            <textField>
+                <reportElement x="0" y="0" width="200" height="20"/>
+                <textFieldExpression><![CDATA[$F{livro_titulo}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="200" y="0" width="120" height="20"/>
+                <textFieldExpression><![CDATA[$F{editora}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="320" y="0" width="70" height="20"/>
+                <textElement textAlignment="Center"/>
+                <textFieldExpression><![CDATA[$F{edicao}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="390" y="0" width="80" height="20"/>
+                <textElement textAlignment="Center"/>
+                <textFieldExpression><![CDATA[$F{ano_publicacao}]]></textFieldExpression>
+            </textField>
+            <textField pattern="R$ #,##0.00">
+                <reportElement x="470" y="0" width="85" height="20"/>
+                <textElement textAlignment="Right"/>
+                <textFieldExpression><![CDATA[$F{valor}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+
+    <pageFooter>
+        <band height="25">
+            <textField>
+                <reportElement x="500" y="5" width="55" height="20"/>
+                <textElement textAlignment="Right"/>
+                <textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
+            </textField>
+        </band>
+    </pageFooter>
+</jasperReport>
